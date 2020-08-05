@@ -1,5 +1,5 @@
 output "sybase_iq_public_ip" {
-  value = aws_instance.sybase_iq.public_ip != "" ? aws_instance.sybase_iq.public_ip : "none"
+  value = var.sybase_iq_ec2_assign_public_ip ? aws_instance.sybase_iq.public_ip : "none"
 }
 output "sybase_iq_private_hostname" {
   value = aws_instance.sybase_iq.private_dns
