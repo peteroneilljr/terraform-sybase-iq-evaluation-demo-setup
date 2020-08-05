@@ -1,5 +1,5 @@
 locals {
-  iq_cloud_config    = <<CLOUD
+  iq_cloud_config = <<CLOUD
 #cloud-config
 # Creates sdm user
 groups:
@@ -30,13 +30,13 @@ runcmd:
 - [ "/bin/bash", "/opt/sybase/sybase_setup.sh" ]
 CLOUD
 
-#################
-# The 4 spaces are an intentional part of the Cloud Init formatting. 
-#################
-#################
-# This is essentially the user_data script, but due to cloud init limitations it is being loaded as a file and run as a local script.
-#################
-  iq_userdata        = <<NOTES
+  #################
+  # The 4 spaces are an intentional part of the Cloud Init formatting. 
+  #################
+  #################
+  # This is essentially the user_data script, but due to cloud init limitations it is being loaded as a file and run as a local script.
+  #################
+  iq_userdata = <<NOTES
     #!/bin/bash -xv
 
     # install AWS CLI to download file from S3
@@ -51,7 +51,7 @@ CLOUD
     # Download and expand Sybase IQ 16 
     cd /opt/sybase
     /usr/local/bin/aws s3 cp ${var.sybase_iq_s3_link} .
-    tar zxvf ${ split("/", var.sybase_iq_s3_link)[length(split("/", var.sybase_iq_s3_link)) - 1] }
+    tar zxvf ${split("/", var.sybase_iq_s3_link)[length(split("/", var.sybase_iq_s3_link)) - 1]}
 
     echo "kernel.shmmax = 300000000" >> /etc/sysctl.conf
     /sbin/sysctl -p
@@ -72,10 +72,10 @@ CLOUD
     start_iq @iqdemo.cfg iqdemo.db
 
 NOTES
-#################
-# Any of the settings in this response file can be modified to adjust the Sybase IQ installation.
-#################
-  iq_response_file   = <<NOTES
+  #################
+  # Any of the settings in this response file can be modified to adjust the Sybase IQ installation.
+  #################
+  iq_response_file = <<NOTES
     # Tue Jul 28 22:03:08 UTC 2020
     # Replay feature output
     # ---------------------

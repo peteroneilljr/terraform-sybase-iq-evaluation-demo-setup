@@ -32,8 +32,8 @@ resource "aws_iam_instance_profile" "sybase_iq" {
 }
 
 resource "aws_iam_role" "sybase_iq" {
-  name = "sybase_iq"
-  path = "/"
+  name_prefix = "sybase_iq"
+  path        = "/"
 
   assume_role_policy = <<EOF
 {
