@@ -27,7 +27,7 @@ module "sg_sybase_iq" {
 # IAM profile to download from S3
 #################
 resource "aws_iam_instance_profile" "sybase_iq" {
-  name = "sybase_iq"
+  name_prefix = "sybase_iq"
   role = aws_iam_role.sybase_iq.name
 }
 
